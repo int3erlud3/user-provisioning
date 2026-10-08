@@ -4,6 +4,24 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+```text
+   _  _ ___ ___ _ _
+  | || (_-</ -_) '_|
+   \_,_/__/\___|_|
+                    _    _          _
+   _ __ _ _ _____ _(_)__(_)___ _ _ (_)_ _  __ _
+  | '_ \ '_/ _ \ V / (_-< / _ \ ' \| | ' \/ _` |
+  | .__/_| \___/\_/|_/__/_\___/_||_|_|_||_\__, |
+  |_|                                     |___/
+
++====================================================================+
+|  USER PROVISIONING  ::  CSV-Driven Account Lifecycle               |
++--------------------------------------------------------------------+
+|  Create, lock and delete Linux users - dry-run by default          |
+|  v1.0.0  -  Bastion Ops Toolkit  -  by int3erlud3                  |
++====================================================================+
+```
+
 Create, lock and delete Linux user accounts from a CSV file using the standard
 `useradd` / `usermod` / `userdel` tools. **Dry-run by default**, strict validation,
 fail-closed behaviour and a JSON Lines audit log.
@@ -81,6 +99,15 @@ Exit codes: `0` success, `1` validation/usage error (nothing changed), `2` one o
 | `--audit-log PATH` | `/var/log/user-provisioning.jsonl` with `--apply` | Audit log file |
 | `--min-uid N` | `1000` | Lowest UID that may be locked/deleted (cannot be < 1000) |
 | `--allow-privileged-groups` | off | Permit `sudo`, `wheel`, `docker`, … |
+| `--no-banner` / `NO_BANNER=1` | off | Suppress the startup banner (shown on a terminal only) |
+
+## Startup banner
+
+Part of the **Bastion Ops Toolkit**. When run interactively, `user-provisioning` prints the
+banner shown above to **stderr** – only if stderr is a terminal. Pipes,
+cron jobs, systemd units and monitoring agents see exactly the same output and exit
+codes as before. Disable it with `--no-banner` or `NO_BANNER=1`; `--help` and
+`--version` show it on a terminal too.
 
 ## Development
 

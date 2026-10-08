@@ -9,6 +9,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from . import __version__
+from .banner import maybe_print_banner, maybe_print_banner_for_info
 from .core import AuditLog, Policy, ValidationError, build_plan, execute, load_allowed_shells, read_rows
 
 DEFAULT_AUDIT_LOG = Path("/var/log/user-provisioning.jsonl")
@@ -34,12 +35,18 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="allow adding users to sudo/wheel/docker/adm/... groups",
     )
+    p.add_argument(
+        "--no-banner", action="store_true", help="do not print the startup banner (or set NO_BANNER=1)"
+    )
     p.add_argument("-V", "--version", action="version", version=f"%(prog)s {__version__}")
     return p
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    maybe_print_banner_for_info(argv)
     args = build_parser().parse_args(argv)
+    maybe_print_banner(args.no_banner)
     if args.min_uid < 1000:
         print("error: --min-uid below 1000 is not allowed", file=sys.stderr)
         return 1
