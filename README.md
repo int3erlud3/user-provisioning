@@ -1,6 +1,6 @@
 # user-provisioning
 
-[![CI](https://github.com/OWNER/user-provisioning/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/user-provisioning/actions/workflows/ci.yml)
+[![CI](https://github.com/int3erlud3/user-provisioning/actions/workflows/ci.yml/badge.svg)](https://github.com/int3erlud3/user-provisioning/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -23,7 +23,7 @@ fail-closed behaviour and a JSON Lines audit log.
 ## Installation
 
 ```bash
-git clone https://github.com/OWNER/user-provisioning.git
+git clone https://github.com/int3erlud3/user-provisioning.git
 cd user-provisioning
 sudo python3 -m venv /opt/user-provisioning
 sudo /opt/user-provisioning/bin/pip install .
