@@ -1,0 +1,6 @@
+action,username,groups,shell,comment,remove_home
+create,jdoe,users,/bin/bash,Jane Doe,
+create,svc-backup,,/usr/sbin/nologin,Backup service account,
+lock,olduser,,,,
+delete,contractor1,,,,yes
+# comment lines are ignored,,,,,
