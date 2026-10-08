@@ -42,6 +42,16 @@ jobs:
       - run: pip install -e ".[dev]"
       - run: pytest --cov=src --cov-report=term-missing
 
+  integration:
+    name: Integration (real useradd in a container)
+    runs-on: ubuntu-24.04
+    needs: test
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: tests/integration/run-in-docker.sh
+
   security:
     name: Security scan
     runs-on: ubuntu-24.04

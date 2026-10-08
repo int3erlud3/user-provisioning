@@ -2,7 +2,7 @@ VENV ?= .venv
 PY := $(VENV)/bin/python
 GITLEAKS_IMAGE := ghcr.io/gitleaks/gitleaks:v8.30.1
 
-.PHONY: all venv lint test security scan
+.PHONY: all venv lint test security scan integration
 all: lint test security
 
 venv:
@@ -23,3 +23,6 @@ security:
 
 scan:
 	docker run --rm -v "$(CURDIR):/repo:ro" $(GITLEAKS_IMAGE) dir /repo --redact --no-banner
+
+integration:
+	tests/integration/run-in-docker.sh

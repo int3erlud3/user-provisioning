@@ -86,6 +86,7 @@ Exit codes: `0` success, `1` validation/usage error (nothing changed), `2` one o
 
 ```bash
 make venv && make lint test security   # ruff, pytest (subprocess mocked), bandit, pip-audit
+make integration                        # real useradd/usermod/userdel in a throwaway container
 make scan                               # gitleaks secret scan (needs Docker)
 ```
 
